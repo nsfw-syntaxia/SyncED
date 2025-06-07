@@ -120,7 +120,7 @@ try it yourself locally by following these steps
 
 ```bash
 # 1. clone this repo
-git clone https://github.com/your-username/synced.git
+git clone https://github.com/nsfw-syntaxia/SyncED.git
 
 # 2. move into the folder
 cd synced
