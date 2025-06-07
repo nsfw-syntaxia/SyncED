@@ -16,6 +16,7 @@ const gradeOptions = [ "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "
   "3.0", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9",
   "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.6", "4.8", "4.9", "5.0", "INC", "DROP" ];
 
+/* welcome card: display the received student data as props */
 const WelcomeCard = ({ studentData }) => (
   <div className="bg-white dark:bg-gray-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg p-8 transition-colors duration-300">
     <div className="flex items-center space-x-4">
@@ -48,6 +49,7 @@ const WelcomeCard = ({ studentData }) => (
   </div>
 );
 
+/* student info input handling: updates data and lifting state up to the parent component on save */
 const StudentInfo = ({ studentData, setStudentData }) => {
   const [formData, setFormData] = useState(studentData);
   const [isSaved, setIsSaved] = useState(false);
@@ -133,6 +135,7 @@ const StudentInfo = ({ studentData, setStudentData }) => {
   );
 };
 
+/* counter demonstrates state management for an array of objects (courses/subjects) */
 const Courses = ({ courses, setCourses }) => {
   const addCourse = () => {
     const newCourse = { id: Date.now(), subject: "", grade: "1.00" };
@@ -206,16 +209,21 @@ const Courses = ({ courses, setCourses }) => {
   );
 };
 
+/* main app component */
 export default function StudentPortal() {
   const [isMounted, setIsMounted] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+
+  /* this declares the main state variables - 'studentData' is an object */
   const [studentData, setStudentData] = useState({
     name: "Trixie Dolera",
     studentId: "23-3403-881",
     course: "BS Computer Engineering",
     year: "2nd Year",
   });
+
+  /* the 'courses' is an array of objects */
   const [courses, setCourses] = useState([
     { id: 1, subject: "Data Structures and Algorithms", grade: "4.4" },
     { id: 2, subject: "Object Oriented Programming 2", grade: "4.6" },
@@ -276,10 +284,12 @@ export default function StudentPortal() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+      /* background declaration */
       <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid-light.svg')] dark:bg-[url('/grid-dark.svg')] opacity-50 dark:opacity-30 transition-opacity"></div>
       <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-gray-900 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#374151_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
       <div className="relative z-10">
+        /* header */
         <header className="sticky top-0 z-50 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
           <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
@@ -303,12 +313,14 @@ export default function StudentPortal() {
           </nav>
         </header>
 
+        /* main content */
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <div className="max-w-4xl mx-auto">
             {renderContent()}
           </div>
         </main>
         
+        /* footer */
         <footer className="text-center py-6 mt-8">
           <p className="text-sm text-gray-500 dark:text-gray-400">
             © {new Date().getFullYear()} SyncED by Trixie Dolera. All rights reserved.
